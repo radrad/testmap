@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>
+			Clustering
+		</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    	<meta charset="utf-8">
+    	<script src="script/d3.min.js"></script>
+		<script src="script/d3.geom.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry" type="text/javascript"></script>
+		<script src="script/google.maplabel.min.js"></script>
+    	<script src="script/performanceChecker.js" type="text/javascript"></script>
+    	<script src="script/GrahamScan.js" type="text/javascript"></script>
+    	<script src="script/customizedtooltip.js" type="text/javascript"></script>
+		<script src="script/googleMK.js" type="text/javascript"></script>
+    	<script src="script/evaluationDatasets.js" type="text/javascript"></script>
+    	<script src="script/main.js" type="text/javascript"></script>
+    	<link rel="stylesheet" type="text/css" href="style/font-awesome.min.css">
+    	<link rel="stylesheet" type="text/css" href="style/style.css">
+	</head>
+	<body>
+		<!--<div id="controls">
+			<h1>Clustering of heterogeneous point clouds</h1>
+			<h2>Clusters</h2>
+			<div id="clusters"></div>
+			<div class="clear"></div>
+			<h2>Points</h2>
+			<div id="points"></div>
+			<div class="clear"></div>
+		</div>-->
+		<form name="evaluationForm" action="evaluationSend.php" method="post"><textarea name="evaluation" style="display:none;"></textarea></form>
+		<div id="map-canvas" class="map-big"></div>
+		<div id="map-shadow"><div><i class="fa fa-mail-reply"></i> return to map</div></div>
+		<div id="map-canvas-alternate" class="map-big map-off"></div>
+		<div id="menu">
+			<!--<button onclick="addRandomMarkers(10);">10 random points</button>
+			<button onclick="showHideClusters(this);"><img src="images/radio_checked.png"> Show Clusters</button>-->
+			<!--<button onclick="cluster.events.switchAlternateZoom(this);"><img src="images/radio_unchecked.png"> Magnifier zoom</button>-->
+			<!--<button onclick="cluster.events.switchShowSmallPoints(this);"><img src="images/radio_unchecked.png"> Small points</button>-->
+			<!--<button onclick="if(confirm('Reset everything?')){localStorage.clear(); window.location.reload();}">Reset</button>-->
+		</div>
+		<div id="map-controls">
+			<button onclick="cluster.events.zoomIn();"><i class="fa fa-fw fa-plus"></i> zoom in</button>
+			<button onclick="cluster.events.zoomOut();"><i class="fa fa-fw fa-minus"></i> zoom out</button>
+			<button onclick="cluster.events.returnToMap();"><i class="fa fa-fw fa-mail-reply"></i> return to map</button>
+		</div>
+		<!--
+		<div id="evaluation">
+			<h1>Clustering of heterogenous point-clouds</h1>
+			Choose clustering method:<br><br>
+			<h2>Test 1:</h2>
+			<button onclick="cluster.evaluation.start(1);">No clustering algorithm</button><br>
+			<h2>Test 2:</h2>
+			<button onclick="cluster.evaluation.start(2);">Clustering enabled</button><br>
+			<h2>Test 3:</h2>
+			<button onclick="cluster.evaluation.start(2,true);">Clustering enabled with magnifier-zoom</button><br>
+			<h2>Test 4:</h2>
+			<button onclick="cluster.evaluation.start(3);">MarkerClusterer by Google</button>
+		</div>-->
+		<div id="evaluation">
+			<h1>Evaluation: Clustering für heterogene Point-Clouds</h1>
+			Willkommen zur Evaluation der Bachelorarbeit "Clustering für heterogene Point-Clouds" von Malte Wellmann, Gutachter: Dr. Falko Schmid.<br>
+			Sie werden im Folgenden Aufgaben zur Arbeit mit einer online Kartenanwendung bekommen. Diese Aufgaben sind mit der Maus und ohne die Verwendung einer Suchfunktion oder Filteroptionen zu lösen.<br><br>
+			Während der Evaluation werden alle Mausbewegungen und -klicks aufgezeichnet und anschließend werden Sie einige Fragen beantworten.<br>
+			Es ist wichtig, dass Sie zu keinem Zeitpunkt der Evaluation das Browserfenster schließen, wechseln oder aktualisieren. Wenn Sie eine Frage oder ein Problem haben, so wenden Sie sich bitte an die Betreuung.<br><br>
+			Die Betreuer erklären Ihnen zunächst die Bedienung des Clusterings.<br>Sie können sich bereits rechts mit der Bedienung der Karte vertraut machen.<br><br>
+			Geben Sie Ihr Pseudonym an (freie Wahl, bitte merken für den Papierteil der Evaluation) und klicken Sie, <b>wenn Sie dazu aufgefordert werden</b>, auf Start.<br><br>
+			Ihr Pseudonym: <input type="text" value="" id="evaluationNumber"><br><br>
+			<button class="big-button" onclick="cluster.evaluation.step1(2);">Start</button>
+		</div>
+		<button id="pause" onclick="cluster.evaluation.pause();">Pause</button>
+	</body>
+</html>

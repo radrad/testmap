@@ -1,0 +1,4 @@
+Bitte die index.html mit Mozilla Firefox oder Google Chrome starten.
+
+Nicht alle Browser bieten den gleichen Funktionsumfang und die gleiche Performance.
+Von der Verwendung des Microsoft Internet Explorers wird aufgrund der fehlenden Unterstützung für die lokale Speicherung von Daten per "Local Storage" abgeraten.

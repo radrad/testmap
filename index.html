@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<!-- Clustering for heterogenous point clouds
+ by Malte Wellmann, 2014
+ Document: Main index file, open this file in web browser -->
+<html>
+	<head>
+		<title>
+			Clustering
+		</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    	<meta charset="utf-8">
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry" type="text/javascript"></script>
+    	<script src="script/d3.min.js"></script>
+		<script src="script/d3.geom.js"></script>
+		<script src="script/google.maplabel.min.js"></script>
+		<script src="script/google.customizedtooltip.js"></script>
+		<script src="script/google.MarkerClusterer.js"></script>
+		<script src="script/convexhull.js"></script>
+		<script src="script/cluster.main.js"></script>
+		<script src="script/cluster.calculations.js"></script>
+		<script src="script/cluster.display.js"></script>
+		<script src="script/cluster.evaluation.main.js"></script>
+		<script src="script/cluster.evaluation.cityData.js"></script>
+		<script src="script/cluster.evaluation.logging.js"></script>
+		<script src="script/cluster.events.js"></script>
+		<script src="script/cluster.helper.js"></script>
+		<script src="script/cluster.localStorage.js"></script>
+		<script src="script/cluster.maps.googlemaps.js"></script>
+		<script src="script/cluster.performance.js"></script>
+		<script src="script/cluster.Point.js"></script>
+    	<link rel="stylesheet" type="text/css" href="style/font-awesome.min.css">
+    	<link rel="stylesheet" type="text/css" href="style/style.css">
+	</head>
+	<body>
+		<div id="controls">
+			<h1>Clustering of heterogeneous point clouds (commented out)</h1>
+			<h2>Clusters</h2>
+			<div id="clusters"></div>
+			<div class="clear"></div>
+			<h2>Points</h2>
+			<div id="points"></div>
+			<div class="clear"></div>
+		</div>
+		<form name="evaluationForm" action="evaluationSend.php" method="post"><textarea name="evaluation" style="display:none;"></textarea></form>
+		<div id="map-canvas" class="map-big"></div>
+		<div id="map-shadow"><div><i class="fa fa-mail-reply"></i> return to map</div></div>
+		<div id="map-canvas-alternate" class="map-big map-off"></div>
+		<div id="menu">
+			<button onclick="addRandomMarkers(10);">10 random points (commented out)</button>
+			<button onclick="showHideClusters(this);"><img src="images/radio_checked.png"> Show Clusters (commented out)</button>
+			<button onclick="cluster.events.switchAlternateZoom(this);"><img src="images/radio_unchecked.png"> Magnifier zoom (commented out)</button>
+			<button onclick="cluster.events.switchShowSmallPoints(this);"><img src="images/radio_unchecked.png"> Small points (commented out)</button>
+			<button onclick="localStorage.clear(); window.location.reload();">Back to menu</button>
+		</div>
+		<div id="map-controls">
+			<button onclick="cluster.events.zoomIn();"><i class="fa fa-fw fa-plus"></i> zoom in</button>
+			<button onclick="cluster.events.zoomOut();"><i class="fa fa-fw fa-minus"></i> zoom out</button>
+			<button onclick="cluster.events.returnToMap();"><i class="fa fa-fw fa-mail-reply"></i> return to map</button>
+		</div>
+		
+		<div id="evaluation">
+			<h1>Clustering of heterogenous point-clouds (commented out)</h1>
+			Choose clustering method:<br><br>
+			<h2>Test 1:</h2>
+			<button onclick="cluster.evaluation.start(1);">No clustering algorithm</button><br>
+			<h2>Test 2:</h2>
+			<button onclick="cluster.evaluation.start(2);">Clustering enabled</button><br>
+			<h2>Test 3:</h2>
+			<button onclick="cluster.evaluation.start(2,true);">Clustering enabled with magnifier-zoom</button><br>
+			<h2>Test 4:</h2>
+			<button onclick="cluster.evaluation.start(3);">Marker Clusterer by Google</button>
+		</div>
+		<div id="startup">
+			<h1>Clustering for Heterogeneous Point Clouds</h1>
+			<h2>1. Step : Set Display</h2>
+			<img src="images/logo.png" id="logo"/>
+			<strong>Click on clusters</strong><br>
+			<input type="radio" name="alternateZoom" value="false" CHECKED> Zoom on Cluster<br>
+    		<input type="radio" name="alternateZoom" value="true"> Motion effect<br><br>
+			<strong>Mouse over cluster</strong><br>
+			<input type="radio" name="clusteringAlg" value="2" CHECKED> Own implementation<br>
+			<input type="radio" name="clusteringAlg" value="3"> Google Marker Clusterer<br>
+    		<input type="radio" name="clusteringAlg" value="1"> without clustering<br><br>
+			<strong>Dynamic adding points ( click on map )</strong><br>
+			<input type="radio" name="dynamicAdding" value="false" CHECKED> out<br>
+			<input type="radio" name="dynamicAdding" value="true"> at<br><br>
+			<strong>Zoom behavior</strong><br>
+			<input type="radio" name="smoothZooming" value="false" CHECKED> normal<br>
+			<input type="radio" name="smoothZooming" value="true"> slowed down<br><br>
+			<h2>2. Step : City invite</h2>
+			<button onclick="cluster.startup('ankara');">Ankara</button> <button onclick="cluster.startup('washington');">Washington</button> <button onclick="cluster.startup('liverpool');">Liverpool</button> <button onclick="cluster.startup('shanghai');">Shanghai</button> <button onclick="cluster.startup('mumbai');">Mumbai</button> <button onclick="cluster.startup('kairo');">Kairo</button> <button onclick="cluster.startup('vientiane');">Vientiane</button> <button onclick="cluster.startup('toledo');">Toledo</button> 
+			<br>
+			<h1>Alternatively : Start Evaluation</h1>
+			When starting the evaluation the parameters set here will not be considered<br><br>
+			<button onclick="window.location = 'Evaluation/a.html'">Group A</button> 
+			<button onclick="window.location = 'Evaluation/b.html'">Group B</button>
+		</div>
+		<button id="pause" onclick="cluster.evaluation.pause();">Pause (commented out)</button>
+	</body>
+</html>

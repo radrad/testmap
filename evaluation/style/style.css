@@ -1,0 +1,440 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-style: Arial;
+	overflow: hidden;
+}
+
+.infowindow{
+	width: 100px;
+}
+
+.hidden{
+	display: none !important;
+}
+
+.map-big{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	z-index: 10;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.label{
+	text-align: center;
+	width: 28px;
+	height: 28px;
+	line-height: 28px;
+	overflow: hidden;
+	margin-left:-16px;
+	margin-top: -16px;
+	color: #FFF;
+	background: red;
+	border-radius: 16px;
+	border: 2px solid #FFF;
+	font-size: 10px !important;
+}
+
+.label-small{
+	text-align: center;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	border-radius: 9px;
+	overflow: hidden;
+	margin-left:-9px;
+	margin-top: -9px;
+	color: #FFF;
+	font-size: 9px !important;
+}
+
+.label.label-high{
+	background-color: #F00;
+}
+.label.label-medium{
+	background-color: #F77;
+	color: black !important;
+}
+.label.label-low{
+	background-color: #fcc;
+	color: black !important;
+}
+.label-small.label-high{
+	background-color: rgba(255,0,0,0.6);
+	width: 20px;
+	height: 20px;
+	margin-left: -10px;
+	margin-top: -10px;
+	line-height: 20px;
+}
+.label-small.label-medium{
+	background-color: rgba(255,0,0,0.5);
+}
+.label-small.label-low{
+	background-color: rgba(255,0,0,0.4);
+}
+
+/* makes map switch effect smoother */
+#map-canvas{background-color: transparent !important}
+.gm-style-iw{
+	overflow: hidden;
+	line-height: 1.35;
+}
+
+.map-zoom{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	padding: 0;
+	border: 0px solid transparent;
+	display: block;
+	z-index: 20;
+	border-radius: 50%;
+}
+
+.map-off{
+	z-index: 1 !important;
+}
+.map-off-total{
+	display: none;
+}
+
+.map-minimap{
+	position: absolute;
+	right: 10px;
+	left: auto;
+	bottom: 10px;
+	top: auto;
+	width: 320px;
+	height: 180px;
+	z-index: 20 !important;
+	border: 1px solid black;
+}
+
+#map-shadow{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	z-index: 15;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.15);
+	transition: background 0.3s;
+	display: none;
+	cursor: pointer;
+}
+
+#map-shadow:hover{
+	background-color: rgba(0,0,0,0.1);
+}
+
+#map-shadow div{
+	opacity: 0.5;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 0;
+	padding: 15px;
+	background-color: #555;
+	font: 35px Arial;
+	color: #FFF;
+	transition: opacity 0.3s;
+}
+
+#map-shadow:hover div{
+	opacity: 1;
+}
+
+#controls{
+	padding: 0px 0px 0px 10px;
+	padding-right: 0;
+	padding-top: 0;
+	overflow: auto;
+	float: left;
+	width: 380px;
+	width: 500px; /* no animation */
+	height: 100%;
+	transition: width 0.3s;
+	border-right: 2px solid #BBB;
+}
+
+#controls:hover{
+	width: 500px;
+}
+
+.pointDetailView, .clusterDetailView{
+	background-color: #EEE;
+	padding: 12px;
+	margin: 3px;
+	float: left;
+	border: 1px solid #CCC;
+	cursor: pointer;
+	position: relative;
+	font-size: 0.8em;
+}
+
+.pointDetailView:hover, .clusterDetailView:hover{
+	border: 1px solid #000;
+}
+
+h1{font-size: 1.5em;}
+h2{font-size: 1.3em;}
+
+.pointDetailView h1, .clusterDetailView h1{
+	font-size: 1.2em;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.clusterDetailView ul{
+	list-style-type: none;
+	padding: 0;
+}
+
+.clusterDetailView ul li{
+	padding: 5px;
+	margin: 2px;
+	background-color: white;
+	display: inline;
+	line-height: 28px;
+}
+
+.clear{
+	clear: both;
+}
+
+.pointDetailView .marked, .pointDetailView .notMarked{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+.pointDetailView .notMarked{
+	opacity: 0.15;
+	transition: opacity 0.4s;
+}
+
+.pointDetailView .notMarked:hover, .pointDetailView .marked:hover{
+	opacity: 0.5;
+	transition: opacity 0.2s;
+}
+
+.markerColorBackground1{
+	/*background-color: #DFD; /* Green */
+}
+.markerColorBackground2{
+	background-color: #FDD; /* Red */
+}
+.markerColorBackground3{
+	background-color: #DDF; /* Blue */
+}
+.markerColorBackground4{
+	background-color: #FFD; /* Yellow */
+}
+.markerColorBackground5{
+	background-color: #FDF; /* Pink */
+}
+
+#menu{
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	text-align: right;
+	z-index: 30;
+}
+
+#menu button{
+	margin: 0;
+	width: 150px;
+	padding: 10px;
+	background-color: #f7f7f7;
+	display: block;
+	border: 1px solid #aaa;
+	border-bottom: none;
+	border-right: none;
+	text-align: left;
+	transition: width 0.1s, margin 0.1s;
+	cursor: pointer;
+}
+#menu button:hover{
+	background-color: #eee;
+	margin-left: -10px;
+	width: 160px;
+	border-bottom: 1px solid #aaa;
+}
+#menu button:first-of-type{
+	border-top: none;
+}
+#menu button:last-of-type{
+	border-bottom: 1px solid #aaa;
+	border-bottom-left-radius: 10px;
+}
+#menu button img{
+	vertical-align: -6px;
+	margin-right: 4px;
+	transition: all 0.1s;
+}
+#menu button:hover + button{
+	border-top: none;
+}
+
+#clusterMethodButtons button{
+	margin: 0;
+	padding: 10px;
+	background-color: #f7f7f7;
+	display: inline;
+	border: 1px solid #aaa;
+	border-right: none;
+	text-align: center;
+	cursor: pointer;
+}
+#clusterMethodButtons button:first-of-type{
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+#clusterMethodButtons button:last-of-type{
+	border-right: 1px solid #aaa;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#clusterMethodButtons button:hover{
+	background-color: #eee;
+}
+#clusterMethodButtons button:disabled{
+	cursor: default;
+	color: black;
+	background-color: #eee;
+}
+
+.focus-button{
+	cursor: pointer;
+	display: block;
+	background-color: #CCC;
+	height: 50px;
+	width: 50px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 2em !important;
+	color: white;
+	transition: font-size 0.2s, background-color 0.2s;
+}
+
+.focus-button:hover{
+	background-color: #BBB;
+	font-size: 2.5em !important;
+}
+
+.tooltip { position:absolute;
+	padding: 5px;
+	margin-top: -50px; /* is overwritten */
+	margin-left: -25px;
+	border: 1px solid #FFF;
+	font-size: 15px;
+	font-family: Arial;
+	background-color: #FFF;
+	color: #000;
+	border-radius: 10px;
+	min-width: 50px;
+}
+
+.tooltip i{
+	font-style: normal;
+	font-size: 2.2em;
+	display: block;
+	float: left;
+	margin-right: 5px;
+}
+
+.tooltip:after {
+	content:"";
+	position:absolute;
+	border-style:solid;
+	display:block; 
+    width:0;
+	bottom:-10px; /* value = - border-top-width - border-bottom-width */
+	left:10px; /* controls horizontal position */
+	border-width:10px 10px 0; /* vary these values to change the angle of the vertex */
+	border-color: #FFF transparent;
+}
+
+#map-controls{
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-top: -60px;
+	z-index: 19;
+	display: none;
+}
+
+
+#map-controls button{
+	margin: 0;
+	width: 150px;
+	padding: 10px;
+	background-color: #f7f7f7;
+	display: block;
+	border: 1px solid #aaa;
+	border-bottom: none;
+	border-right: none;
+	text-align: left;
+	transition: width 0.1s, margin 0.1s;
+	cursor: pointer;
+}
+#map-controls button:hover{
+	background-color: #eee;
+	margin-left: -10px;
+	width: 160px;
+	border-bottom: 1px solid #aaa;
+}
+#map-controls button:first-of-type{
+	border-top: 1px solid #aaa;
+	border-top-left-radius: 10px;
+}
+#map-controls button:last-of-type{
+	border-bottom: 1px solid #aaa;
+	border-bottom-left-radius: 10px;
+}
+#map-controls button:hover + button{
+	border-top: none;
+}
+
+#evaluation{
+	width: 200px;
+	height: 100%;
+	z-index: 1000;
+	background-color: #EEE;
+	padding: 0px 15px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+	font: 1em Arial;
+	text-align: left;
+	border-left: 2px solid #888;
+	overflow-y: auto;
+}
+
+.big-button{
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1.2em;
+}
+
+.big-button strong{
+	font-size: 1.4em;
+}
+
+#pause{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 1002;
+}
